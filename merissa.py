@@ -24,7 +24,7 @@ tr = Translator()
 @bot.on_message(filters.command("start") & ~filters.edited)
 async def start(client, message):
    if message.chat.type == 'private':
-       await message.reply(f"**Saya** {BOT_NAME} 😎.",   
+       await message.reply(f"Saya {BOT_NAME} 😎.",   
                             reply_markup=InlineKeyboardMarkup(
                                 [[
                                         InlineKeyboardButton(
