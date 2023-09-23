@@ -24,13 +24,13 @@ tr = Translator()
 @bot.on_message(filters.command("start") & ~filters.edited)
 async def start(client, message):
    if message.chat.type == 'private':
-       await message.reply(f"**Hey There, I'm** {BOT_NAME}. **An advanced chatbot with AI. \n\nAdd me to your group and chat with me!**",   
+       await message.reply(f"**Saya** {BOT_NAME} 😎.",   
                             reply_markup=InlineKeyboardMarkup(
                                 [[
                                         InlineKeyboardButton(
-                                            "Dev", url=f"https://t.me/{OWNER_USERNAME}"),
+                                            "Pemilik", url=f"https://t.me/{OWNER_USERNAME}"),
                                         InlineKeyboardButton(
-                                            "Repo", url="https://github.com/Prince-Botz/Merissa-Chatbot")
+                                            "Grup", url="t.me/HaoTogelLivedraw")
                                     ]]
                             ),               
            )
@@ -60,14 +60,14 @@ async def chatbot_talk(_, message: Message):
         await bot.send_chat_action(message.chat.id, "typing")
         lang = tr.translate(message.text).src
         trtoen = (
-            message.text if lang == "en" else tr.translate(message.text, dest="en").text
+            message.text if lang == "id" else tr.translate(message.text, dest="id").text
         ).replace(" ", "%20")
         text = trtoen.replace(" ", "%20") if len(message.text) < 2 else trtoen
         merissaurl = requests.get(
             f"https://merissachatbot.tk/api/apikey={MERISSA_TOKEN}/{BOT_NAME}/{OWNER_NAME}/message={text}"
         )
         textmsg = merissaurl.json()["reply"]
-        msg = tr.translate(textmsg, src="en", dest=LANG)
+        msg = tr.translate(textmsg, src="id", dest=LANG)
         await message.reply_text(msg.text)
 
 print("Merissa Chatbot Started!")
